@@ -1,8 +1,9 @@
 {
   "manifest_version": 2,
+  "author": "liqMix",
   "name": "Hide English Sentences (WaniKani)",
   "description": "Hides the english translation of sentences until a button is clicked.",
-  "version": "1.0",
+  "version": "1.1",
   "icons": {
     "128": "icon.png"
   },
