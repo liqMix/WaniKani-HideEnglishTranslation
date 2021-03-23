@@ -1,8 +1,10 @@
 //Hide English Sentences (WaniKani)
 //Brady Young
-//liqmix.github.io
-//October 18th, 2019
+//liq.mx
+//March 22nd, 2021
 
+
+window.onload = () => {main()};
 
 //Sets the display of the english sentence to none
 function hideEnglish(context_element){
@@ -17,13 +19,11 @@ function hideEnglish(context_element){
 
 //Adds button to control visibility of the english translation
 function addButton(context_element){
-    var button = document.createElement("button");
-    context_element.appendChild(button);
+    let button = document.createElement("button");
     button.innerHTML = "英語";
-    button.addEventListener("click", 
-                            function() {
-                              toggleHide(this.parentNode);
-                            })
+    button.style.marginTop = "5px";
+    button.addEventListener("click", function(){toggleHide(this.parentNode);})
+    context_element.appendChild(button);
 }
 
 
@@ -46,18 +46,16 @@ function toggleHide(context_element){
 
 //Check to see if the english sentences exist on the page
 function checkSentences() { 
-  var sentences = document.getElementsByClassName("context-sentence-group");
-  if(!sentences || sentences.length == 0) {
-    return false;
+  let sentences = document.getElementsByClassName("context-sentence-group");
+  if(sentences && sentences.length > 0) {
+    return sentences;
   }
-  return sentences;
 }
 
 
 //Applies the extension to the page
 function main(){
-  var sentence;
-  var sentences = checkSentences();
+  let sentences = checkSentences();
   if(sentences){
     for (sentence of sentences){
       hideEnglish(sentence);
@@ -65,18 +63,3 @@ function main(){
     }
   }
 }
-
-
-//Handle lesson and review pages by watching for changes to the character field.
-var character = document.getElementById('character');
-if(character){
-  var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
-  var observer = new MutationObserver(main);
-  var config = { characterData: false, attributes: false, childList: true, subtree: false };
-  observer.observe(character, config);
-}
-
-
-//Otherwise handle vocabulary pages which are static
-else main();
-
