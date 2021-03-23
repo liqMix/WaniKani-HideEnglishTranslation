@@ -10,7 +10,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.wanikani.com/*"],
-      "run_at": "document_idle",
+      "run_at": "document_end",
       "js": ["content.js"]
     }
   ]
